@@ -1,0 +1,9 @@
+streamlit
+pandas
+markdown2
+python-magic
+pypdf2
+markitdown
+requests
+python-docx
+pyperclip
