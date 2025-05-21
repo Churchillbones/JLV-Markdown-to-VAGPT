@@ -32,7 +32,13 @@ Once a document has been successfully converted to Markdown and its text embeddi
 1.  **Process a Document:** Upload and convert your document. Ensure that the Azure text embeddings are generated (this happens automatically if your environment variables are set).
 2.  **Use the Search Bar:** A "Search Document Content" section will appear below the Markdown preview. Type your query into the search bar.
 3.  **Click "Search":** The application will process your query.
-4.  **View Results:** The most relevant chunks (paragraphs or sections) from the document will be displayed below the search bar, along with their similarity scores to your query.
+4.  **View Results:** The most relevant chunks (paragraphs or sections) from the document will be displayed below the search bar, along with their similarity scores to your query. Each result may also include a "Source" caption (e.g., "Source: Signed by Dr. Smith on Jan 1, 2023") if the application was able to heuristically extract contextual metadata from the document page where the chunk originated.
+
+**Contextual Metadata in Search Results:**
+
+*   **Heuristic Extraction:** For PDF documents, the application attempts to identify metadata like signer names and dates by heuristically scanning the footer area of each page.
+*   **Accuracy and Availability:** Due to wide variations in document formatting, this extracted metadata may sometimes be incomplete, inaccurate, or display as "Metadata is missing" or "Metadata not available for this document type...". This feature provides context where possible but is not guaranteed for all documents or document types.
+*   **No Additional Setup:** The display of this contextual metadata does not require any new environment variables or setup steps beyond those needed for Azure Text Embedding.
 
 **Dependencies for Search:**
 
