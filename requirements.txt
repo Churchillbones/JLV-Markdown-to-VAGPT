@@ -8,3 +8,5 @@ requests
 python-docx
 pyperclip
 openai
+numpy
+scikit-learn

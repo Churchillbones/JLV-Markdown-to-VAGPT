@@ -23,6 +23,31 @@ The application will use these variables to authenticate with Azure OpenAI. If t
 
 The default embedding model used is `text-embedding-3-large`, which is configured within the `src/utils/embedder.py` file (the `AzureEmbedder` class).
 
+### Semantic Document Search
+
+Once a document has been successfully converted to Markdown and its text embeddings have been generated (as described above), you can perform a semantic search within its content.
+
+**How to Use:**
+
+1.  **Process a Document:** Upload and convert your document. Ensure that the Azure text embeddings are generated (this happens automatically if your environment variables are set).
+2.  **Use the Search Bar:** A "Search Document Content" section will appear below the Markdown preview. Type your query into the search bar.
+3.  **Click "Search":** The application will process your query.
+4.  **View Results:** The most relevant chunks (paragraphs or sections) from the document will be displayed below the search bar, along with their similarity scores to your query.
+
+**Dependencies for Search:**
+
+*   **Azure Text Embeddings:** This search functionality is entirely dependent on the successful generation of text embeddings via the Azure OpenAI Service.
+*   **Environment Variables:** You **must** have the `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_API_KEY` environment variables correctly configured. If these are not set or are invalid, the embedding generation will fail, and the semantic search UI may not appear or will be disabled.
+
+**Underlying Mechanism:**
+
+The semantic search works by:
+1.  Splitting the converted document text into smaller, manageable chunks (usually paragraphs).
+2.  Using the Azure OpenAI embedding model to convert each chunk into a numerical vector (embedding) that represents its meaning.
+3.  When you enter a search query, it is also converted into an embedding.
+4.  The system then calculates the cosine similarity between your query's embedding and the embedding of each chunk in the document.
+5.  The chunks with the highest similarity scores are considered the most relevant and are displayed as search results.
+
 ## Installation
 
 1. Clone this repository
