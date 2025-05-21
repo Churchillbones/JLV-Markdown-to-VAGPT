@@ -3,6 +3,7 @@ import base64
 import pyperclip
 from components.file_uploader import FileUploader
 from utils.converter import MarkdownConverter
+from src.utils.embedder import AzureEmbedder # Import AzureEmbedder
 import subprocess
 import sys
 import os
@@ -126,6 +127,22 @@ def main():
         with col2:
             st.write("### Preview")
             st.markdown(markdown_text)
+
+        # --- Azure Embedding Section ---
+        st.subheader("Generate Embeddings")
+        if st.button("Generate Embedding with Azure"):
+            if 'markdown_text' in st.session_state and st.session_state.markdown_text:
+                try:
+                    embedder = AzureEmbedder() # Uses default model
+                    embedding_vector = embedder.get_embedding(st.session_state.markdown_text)
+                    st.success("Successfully generated embedding.")
+                    st.write("Embedding preview (first 5 dimensions):", embedding_vector[:5])
+                except ValueError as ve:
+                    st.error(f"Configuration Error: {ve}. Please ensure AZURE_OPENAI_ENDPOINT and AZURE_OPENAI_API_KEY environment variables are set correctly.")
+                except Exception as e:
+                    st.error(f"An error occurred during embedding generation: {e}")
+            else:
+                st.warning("Please convert a document to Markdown first to generate embeddings.")
             
     st.sidebar.title("Tips")
     st.sidebar.markdown("""

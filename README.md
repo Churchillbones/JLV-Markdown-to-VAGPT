@@ -10,6 +10,19 @@ A Streamlit application that converts PDF documents to Markdown format for use w
 - Copy functionality for easy pasting into a GPT chat
 - Download option for the converted markdown file
 
+## Azure Text Embedding
+
+This application can generate text embeddings for the converted Markdown content using Azure OpenAI Service. This feature is useful for various Natural Language Processing tasks, such as semantic search, document clustering, or as input to other AI models.
+
+To use this feature, you need to configure the following environment variables in the environment where the Streamlit application is run:
+
+-   `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI resource endpoint (e.g., `https://your-resource-name.openai.azure.com/`).
+-   `AZURE_OPENAI_API_KEY`: Your API key for the Azure OpenAI resource.
+
+The application will use these variables to authenticate with Azure OpenAI. If these variables are not set, the embedding generation feature will display an error message.
+
+The default embedding model used is `text-embedding-3-large`, which is configured within the `src/utils/embedder.py` file (the `AzureEmbedder` class).
+
 ## Installation
 
 1. Clone this repository
