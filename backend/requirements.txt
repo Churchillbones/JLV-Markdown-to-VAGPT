@@ -1,0 +1,12 @@
+Flask
+Flask-CORS
+python-dotenv
+openai
+PyPDF2
+python-docx
+markdown-it-py
+numpy
+scikit-learn
+fpdf2
+pytest
+pytest-mock
